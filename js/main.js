@@ -1,5 +1,5 @@
 /*nao terminamos a aula 4/ style*/
-import {aleatorio} from './aleatorio.js';
+import {aleatorio, nome} from './aleatorio.js';
 import {perguntas} from './perguntas.js';
 const botaoJogarNovamente = document.querySelector(".novamente-btn");
 
@@ -121,8 +121,7 @@ mostraPergunta();
 }
 
 function mostraResultado() {
-caixaPerguntas.textContent = "Em 2049...";
-textoResultado.textContent = historiaFinal;
+caixaPerguntas.textContent = `Em 2049, ${nome}`;textoResultado.textContent = historiaFinal;
 caixaAlternativas.textContent = "";
 caixaResultado.classList.add("mostrar");
 botaoJogarNovamente.addEventListener("click", jogaNovamente);
@@ -134,4 +133,10 @@ function jogaNovamente(){
         caixaResultado.classList.remove("mostrar");
         mostraPergunta();
 }
+function substituiNome(){
+    for(const pergunta of perguntas){
+        pergunta.enunciado = pergunta.enunciado.replace(/você/g, nome);
+    }
+}
+substituiNome();
 mostraPergunta();
